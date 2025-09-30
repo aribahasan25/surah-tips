@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quran - Surahs Page {{ page }}</title>
+ <style>
+/* UPDATED STYLES FOR FOOTER AND SEARCH BAR */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url("{{ url_for('static', filename='OIP (1).webp') }}") no-repeat center center fixed;
+    background-size: cover; 
+    color: #333; 
+}
+header { 
+    background:sirenblue; 
+    color:white; 
+    padding:20px; 
+    text-align:left; 
+    font-size:2.0rem; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+}
+nav { 
+    background: black;
+    color: white;  
+    padding: 20px; 
+    text-align: center; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-wrap: wrap; 
+    gap: 20px; 
+}
+nav a { 
+    color:white; 
+    text-decoration:none; 
+    font-weight:bold; 
+    padding: 5px 10px; 
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+}
+.search-form input[type="text"] {
+    padding: 5px 10px;
+    border: 1px solid #eafaf1;
+    border-radius: 5px 0 0 5px; 
+    outline: none;
+    font-size: 0.9rem;
+    max-width: 150px;
+}
+.search-form button {
+    padding: 5px 10px;
+    background: #eafaf1; 
+    color: #007b5e; 
+    border: 1px solid #eafaf1;
+    border-left: none; 
+    border-radius: 0 5px 5px 0; 
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+.search-form button:hover {
+    background: white;
+}
+/* END NEW Search Bar Styling */
+
+.container { 
+    padding: 25px; 
+    max-width: 900px; 
+    margin: auto; 
+    background: rgba(255, 255, 255, 0.98); 
+    border-radius: 15px;
+    margin-top: 20px;
+    min-height: 80vh; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); 
+}
+section { 
+    background:white; 
+    padding:15px; 
+    margin-bottom:15px; 
+    border-radius:10px; 
+    box-shadow:0 2px 6px rgba(0,0,0,0.1); 
+}
+h2 { color:#007b5e; margin-top: 0;}
+audio { width:100%; margin-top:10px; }
+.tips { 
+    background:skyblue; 
+    border-left:5px solid #007b5e; 
+    padding:10px; 
+    margin-bottom:20px; 
+    border-radius:8px;
+    border color: black; 
+}
+.pagination {
+    text-align: center;
+    padding: 10px 0;
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center;
+}
+.pagination a { 
+    margin: 5px; 
+    padding: 5px 10px;
+    text-decoration:none; 
+    color:#007b5e; 
+    font-weight:bold; 
+    border: 1px solid #007b5e;
+    border-radius: 5px;
+    transition: background 0.3s; 
+}
+.pagination a:hover:not(.active) {
+    background: #eafaf1; 
+}
+.pagination a.active {
+    background: #007b5e;
+    color: white;
+}
+/* UPDATED FOOTER CSS for full-width */
+footer {
+    background: #007b5e; /* Matching the header color for consistency */
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+    font-weight: bold;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1); 
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+/* End UPDATED FOOTER CSS */
+
+@media (max-width: 700px) { 
+    nav {
+        flex-direction: column;
+        gap: 5px;
+    }
+    nav a {
+        margin: 0;
+        font-size: 0.9rem;
+    }
+    .search-form {
+        margin-top: 10px;
+    }
+    .container {
+        padding: 15px; 
+    }
+}
+  </style>
+</head>
+<body>
+<header>
+    <h1>SURAH AND TIPS {{ page }}</h1>
+</header>
+<nav>
+    <a href="{{ url_for('index', page=1) }}">Home</a> 
+    <a href="{{ url_for('surah_view') }}">Surah View</a>     
+    <a href="{{ url_for('show_tips') }}">Reading Tips</a>
+    <a href="{{ url_for('admin_add') }}">Admin Add</a>
+    <a href="{{ url_for('about') }}">About</a>
+    
+</nav>
+<div class="container">
+    
+    <p style="text-align: right; margin-bottom: 20px;">
+        <a href="{{ url_for('admin_dashboard') }}" style="color:#007b5e; text-decoration: none; font-weight: bold;">Admin Dashboard →</a>
+    </p>
+
+        
+    <div id="surahs">
+      {% for surah in surahs %}
+      <section class="surah">
+        <h2>{{ surah.number }}. {{ surah.name }}</h2> 
+        <p><b>Meaning:</b> {{ surah.meaning }}</p>
+        <audio controls preload="none">
+          <source src="{{ surah.audio }}" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+      </section>
+      {% endfor %}
+    </div>
+
+        <div class="pagination">
+      {% if page > 1 %}
+        <a href="{{ url_for('index', page=page-1) }}">← Previous</a>
+      {% endif %}
+
+      {% for p in range(1, total_pages+1) %}
+        <a href="{{ url_for('index', page=p) }}" class="{% if p == page %}active{% endif %}">{{ p }}</a>
+      {% endfor %}
+
+      {% if page < total_pages %}
+        <a href="{{ url_for('index', page=page+1) }}">Next →</a>
+      {% endif %}
+    </div>
+
+</div>
+<footer>
+   All information taken from the internet. I am not a scholar, I only wish to spread Islamic knowledge.If any mistake, may Allah forgive us Ameen.
+   Developed by Ariba Hasan..
+</footer>
+</body>
+</html>

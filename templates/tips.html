@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quran Reading Tips</title>
+    <style>
+        /* ------------------ Base Styles (Optional - for clean separation) ------------------ */
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #34495e; }
+        .container { max-width: 900px; margin: 20px auto; background: rgba(255,255,255,0.95); padding: 20px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color:#007b5e; }
+        
+        /* ------------------ Navigation (Copied from page1.html) ------------------ */
+        .header-nav { margin-bottom: 20px; text-align: center; }
+        .header-nav a { color:#007b5e; text-decoration: none; font-weight: bold; padding: 0 8px; }
+        .header-nav a:hover { text-decoration: underline; }
+
+        /* ------------------ Tips Specific Styles (Copied from page1.html) ------------------ */
+        .tips { background:#f0f0f0; padding:15px; border-radius:8px; margin-bottom:20px; }
+        .tips h2 { margin-top:0; color:#007b5e; }
+        .tips ul { margin: 0; padding-left: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reading Tips for the Noble Quran</h1>
+        
+        <div class="header-nav">
+            <a href="{{ url_for('index', page=1) }}">← Back to Home Page</a>
+        </div>
+        
+        <div class="tips">
+            <h2>Guidance for Understanding and Application</h2>
+            <ul>
+                {% for tip in tips %}
+                <li>{{ tip.content }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+    </div>
+    </body>
+</html>

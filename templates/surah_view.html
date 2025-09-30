@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quran Surahs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin:0; 
+      padding:0; 
+      background:#f4f9f9; 
+      color:#333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background:#007b5e; 
+      color:white; 
+      padding:20px; 
+      text-align:center; 
+      font-size:1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .container {
+      padding:20px; 
+      max-width:900px; 
+      margin:auto; 
+      flex: 1;
+    }
+    section {
+      background:white; 
+      padding:15px; 
+      margin-bottom:15px; 
+      border-radius:10px; 
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    }
+    h2 { color:#007b5e; }
+    audio { width:100%; margin-top:10px; }
+    .pagination {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .pagination a {
+      display: inline-block;
+      margin: 5px;
+      padding: 8px 12px;
+      text-decoration:none;
+      color:#007b5e;
+      font-weight:bold;
+      border: 1px solid #007b5e;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+    .pagination a:hover {
+      background:#007b5e;
+      color:white;
+    }
+    #searchInput {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    } 
+    footer {
+      background:#007b5e;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-weight: bold;
+      font-size: 14px;
+      margin-top: auto;
+      border-radius: 0;
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
+    }
+    @media(max-width:600px) {
+      header { font-size: 1.2rem; padding:15px; }
+      h1 { font-size: 1.3rem; }
+      h2 { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>Quran Surahs - Page {{ page }}</header>
+  
+  <div class="container">
+    <h1>Quran - Surahs 1-114</h1>
+
+    <!-- Search Bar -->
+    <input type="text" id="searchInput" placeholder="Search Surah...">
+
+    {% for surah in surahs %}
+    <section>
+      <h2>Surah {{ surah.number }}: {{ surah.name }}</h2>
+      <p>{{ surah.meaning }}</p>
+      <audio controls>
+        <source src="{{ surah.audio }}" type="audio/mpeg">
+      </audio>
+    </section>
+    {% endfor %}
+
+    <!-- Pagination -->
+    <div class="pagination">
+      {% if page > 1 %}
+      <a href="{{ url_for('page', page=page-1) }}">Previous</a>
+      {% endif %}
+      {% if page < total_pages %}
+      <a href="{{ url_for('page', page=page+1) }}">Next</a>
+      {% endif %}
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer>
+    All information taken from the internet. I am not a scholar, I only wish to spread Islamic knowledge.  
+    If any mistake, may Allah forgive us. Ameen.
+  </footer>
+
+  <!-- Search Functionality Script -->
+  <script>
+    document.getElementById("searchInput").addEventListener("keyup", function() {
+      let filter = this.value.toLowerCase();
+      let sections = document.querySelectorAll("section");
+      sections.forEach(function(section) {
+        let text = section.textContent.toLowerCase();
+        section.style.display = text.includes(filter) ? "" : "none";
+      });
+    });
+  </script>
+</body>
+</html>
