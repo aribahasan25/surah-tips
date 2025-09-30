@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Surah</title>
+<style>
+
+body{font-family: Arial; background:#f0f0f0; display:flex; justify-content:center; align-items:center; height:100vh;}
+form{background:white; padding:30px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.2); width:400px;}
+input[type=text], input[type=number]{width:100%; padding:10px; margin:10px 0; border-radius:5px; border:1px solid #ccc;}
+.controls { display: flex; justify-content: space-between; gap: 10px; margin-top: 20px;}
+.button, button[type=submit]{padding:10px; background:#007b5e; color:white; border:none; border-radius:5px; cursor:pointer; font-weight:bold; flex-grow: 1; text-decoration: none; text-align: center;}
+.button:hover, button[type=submit]:hover{background:#005940;}
+.cancel-button { background:#ccc; color:#333; }
+.cancel-button:hover { background: #bbb; }
+</style>
+</head>
+<body>
+<form method="POST">
+    <h2 style="text-align:center;color:#007b5e;">Edit Surah</h2>
+    <input type="number" name="number" value="{{ surah.number }}" required>
+    <input type="text" name="name" value="{{ surah.name }}" required>
+    <input type="text" name="meaning" value="{{ surah.meaning }}" required>
+    <input type="text" name="audio" value="{{ surah.audio }}" required>
+    <input type="text" name="reference" value="{{ surah.reference }}" required>
+    
+    <div class="controls">
+        <button type="submit" class="button">Update Surah</button>
+        <a href="{{ url_for('admin_dashboard') }}" class="button cancel-button">Cancel</a>
+    </div>
+</form>
+</body>
+</html>

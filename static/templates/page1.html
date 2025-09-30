@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quran - Page 1 (Surahs 1-10)</title>
+  <style>
+    /* CSS Corrections for the body background and previous structural fixes */
+  body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+/* CORRECTED BACKGROUND PROPERTY */
+background: url("{{ url_for('static', filename='OIP (1).webp') }}") no-repeat center center fixed;
+  background-size: cover;
+  color: #333;
+}
+    header { 
+      background:#007b5e; 
+      color:white; 
+      padding:20px; 
+      text-align:center; 
+      font-size:1.5rem; 
+    }
+    .header-nav { 
+        background: green;
+        color: white; 
+        padding: 10px; 
+        text-align: center; 
+    }
+    .header-nav a { 
+        color: white; 
+        margin: 0 10px; 
+        text-decoration: none; 
+        font-weight: bold; 
+        white-space: nowrap;
+    }
+    .container { 
+      padding:25px; 
+      max-width:900px; 
+      margin:auto; 
+      background: rgba(255, 255, 255, 0.9); 
+      border-radius: 15px;
+      margin-top: 20px;
+      min-height: 80vh; 
+    }
+    section { 
+      background:white; 
+      padding:15px; 
+      margin-bottom:15px; 
+      border-radius:10px; 
+      box-shadow:0 2px 6px rgba(0,0,0,0.1); 
+    }
+    h2 { color:blue; margin-top:0; }
+    audio { width:100%; margin-top:10px; }
+    .tips { 
+      background:#eafaf1; 
+      border-left:5px solid #007b5e; 
+      padding:10px; 
+      margin-bottom:20px; 
+      border-radius:8px; 
+    }
+    .pagination {
+      text-align: center;
+      padding: 10px 0;
+    }
+    .pagination a { 
+      margin: 5px; 
+      padding: 5px 10px;
+      text-decoration:none; 
+      color:blue; 
+      font-weight:bold; 
+      border: 1px solid #007b5e;
+      border-radius: 5px;
+      display: inline-block;
+    }
+    .pagination a.active {
+      background: #007b5e;
+      color: white;
+    }
+    .pagination a.disabled {
+        color: #aaa;
+        border-color: #eee;
+        cursor: default;
+        background: #f8f8f8;
+    }
+    footer {
+      background:#007b5e;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 25px auto 0 auto;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      max-width: 600px;
+      font-size: 14px;
+      position: relative; 
+    }
+    @media (max-width: 600px) {
+      .container { padding: 15px; }
+      h1 { font-size: 2.0rem; }
+      .surah h2 { font-size: 1rem; }
+      .surah p { font-size: 0.9rem; }
+      .pagination a { padding: 8px 12px; font-size: 0.9rem; }
+      .header-nav a { margin: 0 5px; font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-nav">
+    <a href="{{ url_for('index', page=1) }}">Home</a> |
+    
+    <a href="{{ url_for('index', page=2) }}">Next Page →</a> 
+    
+    | <a href="{{ url_for('surah_view') }}">Surah View</a>
+        
+        | <a href="{{ url_for('tips') }}">Reading Tips</a> |
+    
+    | <a href="{{ url_for('admin_add') }}">Admin Add</a>
+    
+    | <a href="{{ url_for('about') }}">About</a>
+</div>
+  <div class="container">
+    <h1>Quran - Surahs 1 to 10</h1>
+
+ 
+    <input type="text" id="searchInput" placeholder="Search Surah...">
+
+    
+    <section class="surah">
+  <h2>1. Al-Fatiha (The Opening)</h2>
+  <p><b>Meaning:</b> Praise of Allah; worship, guidance, and mercy.</p>
+  <audio controls>
+    <source src="1-Al-Fatiha.mp3" type="audio/mp3">
+  </audio>
+</section>
+
+<section class="surah">
+  <h2>2. Al-Baqarah (The Cow)</h2>
+  <p><b>Meaning:</b> Guidance for believers; laws, stories of prophets, and lessons of faith.</p>
+  <audio controls>
+    <source src="2-Al-Baqarah.mp3" type="audio/mp3">
+  </audio>
+</section>
+
+<section class="surah">
+  <h2>3. Aal-E-Imran (The Family of Imran)</h2>
+  <p><b>Meaning:</b> Story of Imran’s family; faith, unity, and trust in Allah.</p>
+  <audio controls>
+    <source src="3-Aal-E-Imran.mp3" type="audio/mp3">
+  </audio>
+</section>
+
+<section class="surah">
+  <h2>4. An-Nisa (The Women)</h2>
+  <p><b>Meaning:</b> Rights of women, justice, family laws, and social guidance.</p>
+  <audio controls>
+    <source src="4-An-Nisa.mp3" type="audio/mp3">
+  </audio>
+</section>
+
+<section class="surah">
+  <h2>5. Al-Maidah (The Table Spread)</h2>
+  <p><b>Meaning:</b> Laws about food, oaths, justice, and obedience to Allah.</p>
+  <audio controls>
+    <source src="5-Al-Maidah.mp3" type="audio/mp3">
+  </audio>
+</section>
+
+<section class="surah">
+  <h2>6. Al-An’am (The Cattle)</h2>
+  <p><b>Meaning:</b> Oneness of Allah, rejection of shirk, and lessons from prophets.</p>
+  <audio controls>
+    <source src="6-Al-Anam.mp3" type="audio/mp3">
+  </audio>
+</section>
+
+<section class="surah">
+  <h2>7. Al-A’raf (The Heights)</h2>
+  <p><b>Meaning:</b> Stories of past prophets; heaven, hell, and divine warnings.</p>
+  <audio controls>
+    <source src="7-Al-Araf.mp3" type="audio/mp3">
+  </audio>
+</section>
+
+<section class="surah">
+  <h2>8. Al-Anfal (The Spoils of War)</h2>
+  <p><b>Meaning:</b> Rules of war, victory at Badr, and obedience to Allah and His Messenger.</p>
+  <audio controls>
+    <source src="8-Al-Anfal.mp3" type="audio/mp3">
+  </audio>
+</section>
+
+<section class="surah">
+  <h2>9. At-Tawbah (The Repentance)</h2>
+  <p><b>Meaning:</b> Repentance, warning for hypocrites, and call to strive in Allah’s cause.</p>
+  <audio controls>
+    <source src="9-At-Tawbah.mp3" type="audio/mp3">
+  </audio>
+</section>
+
+<section class="surah">
+  <h2>10. Yunus (Prophet Jonah)</h2>
+  <p><b>Meaning:</b> Story of Prophet Yunus; patience, guidance, and signs of Allah.</p>
+  <audio controls>
+    <source src="10-Yunus.mp3" type="audio/mp3">
+  </audio>
+</section>
+
+
+        <div class="pagination">
+      <a href="#" class="disabled">Previous</a>
+      <a href="page1.html" class="active">1</a>       <a href="page2.html">2</a>
+      <a href="page3.html">3</a>
+      <a href="page4.html">4</a>
+      <a href="page5.html">5</a>
+      <a href="page6.html">6</a>
+      <a href="page7.html">7</a>
+      <a href="page8.html">8</a>
+      <a href="page9.html">9</a>
+      <a href="page10.html">10</a>
+      <a href="page11.html">11</a>
+      <a href="page12.html">12</a>
+    </div>
+  </div>
+
+  <footer>
+    All information taken from the internet. I am not a scholar, I only wish to spread Islamic knowledge.  
+    If any mistake, may Allah forgive us. Ameen.
+  </footer>
+
+    <script>
+    // Audio auto-pause
+    const audios = document.querySelectorAll('audio');
+    audios.forEach(audio => {
+      audio.addEventListener('play', () => {
+        audios.forEach(otherAudio => {
+          if (otherAudio !== audio) otherAudio.pause();
+        });
+      });
+    });
+
+    // Search filter
+    const input = document.getElementById('searchInput');
+    const surahs = document.querySelectorAll('.surah');
+    input.addEventListener('input', () => {
+      const filter = input.value.toLowerCase();
+      surahs.forEach(surah => {
+        const title = surah.querySelector('h2').textContent.toLowerCase();
+        surah.style.display = title.includes(filter) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

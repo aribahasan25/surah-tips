@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Tip {{ tip_id + 1 }}</title>
+    <style>
+       
+        body{font-family: Arial, sans-serif; background:#f9f9f9; padding:20px; display:flex; justify-content:center; align-items:center; min-height: 100vh; margin: 0;}
+        .container{max-width:600px; margin:auto; background:white; padding:30px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1); width: 100%;}
+        h1{color:#007b5e; text-align: center; margin-top: 0;}
+        label{display:block; margin-bottom:5px; font-weight:bold; color: #333;}
+        textarea{width:100%; padding:10px; margin-bottom:20px; border:1px solid #ccc; border-radius:4px; box-sizing:border-box;}
+        .controls { display: flex; justify-content: space-between; gap: 10px; }
+        .button{padding:10px 15px; background:#007b5e; color:white; border:none; border-radius:5px; cursor:pointer; font-weight: bold; text-decoration: none; text-align: center; flex-grow: 1; transition: background-color 0.3s;}
+        .button:hover{background:#005940;}
+        .cancel-button{background:#ccc; color:#333;}
+        .cancel-button:hover{background:#bbb;}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Edit Study Tip {{ tip_id + 1 }}</h1>
+    <form method="POST">
+        <label for="content">Tip Content:</label>
+        <textarea id="content" name="content" rows="5" required>{{ tip.content }}</textarea>
+        
+        <div class="controls">
+            <button type="submit" class="button">Update Tip</button>
+            <a href="{{ url_for('admin_dashboard') }}" class="button cancel-button">Cancel</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

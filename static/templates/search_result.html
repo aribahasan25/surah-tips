@@ -1,0 +1,22 @@
+# app.py
+
+@app.route('/search')
+def search():
+    search_query = request.args.get('query', '').strip()
+    
+    if not search_query:
+        return redirect(url_for('index', page=1)) 
+    
+    # Filter the list based on name or meaning (case-insensitive)
+    search_results = [
+        surah for surah in surahs
+        if search_query.lower() in surah['name'].lower() or \
+           search_query.lower() in surah['meaning'].lower()
+    ]
+    
+    return render_template(
+        'search_results.html',  
+        surahs=search_results, 
+        search_term=search_query, 
+        total_results=len(search_results)
+    )
